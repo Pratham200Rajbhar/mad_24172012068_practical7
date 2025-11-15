@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.practical7"
+    namespace = "com.example.mad_24172012068_practical7"
     compileSdk {
         version = release(36)
     }

@@ -1,4 +1,4 @@
-package com.example.practical7
+package com.example.mad_24172012068_practical7
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

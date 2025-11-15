@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:padding="12dp">
 
-        <!-- Avatar -->
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="56dp"
@@ -24,7 +23,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Name -->
         <TextView
             android:id="@+id/nameText"
             android:layout_width="0dp"
@@ -37,7 +35,6 @@
             app:layout_constraintTop_toTopOf="@id/avatar"
             app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
-        <!-- Phone -->
         <TextView
             android:id="@+id/phoneText"
             android:layout_width="0dp"
@@ -47,7 +44,6 @@
             app:layout_constraintTop_toBottomOf="@id/nameText"
             app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
-        <!-- Email -->
         <TextView
             android:id="@+id/emailText"
             android:layout_width="0dp"
@@ -57,7 +53,6 @@
             app:layout_constraintTop_toBottomOf="@id/phoneText"
             app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
-        <!-- Address -->
         <TextView
             android:id="@+id/addressText"
             android:layout_width="0dp"
@@ -67,7 +62,6 @@
             app:layout_constraintTop_toBottomOf="@id/emailText"
             app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
-        <!-- Delete Button (NO border radius, NO ripple circle) -->
         <ImageButton
             android:id="@+id/deleteBtn"
             android:layout_width="36dp"

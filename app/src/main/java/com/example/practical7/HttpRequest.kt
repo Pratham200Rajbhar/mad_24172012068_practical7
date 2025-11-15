@@ -4,7 +4,6 @@ import android.util.Log
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.ProtocolException
@@ -26,9 +25,9 @@ object HttpRequest {
             conn.connectTimeout = 15000
             conn.readTimeout = 15000
 
-            val `in` = BufferedInputStream(conn.inputStream)
-            response = convertStreamToString(`in`)
-            `in`.close()
+            val input = BufferedInputStream(conn.inputStream)
+            response = convertStreamToString(input)
+            input.close()
             conn.disconnect()
         } catch (e: MalformedURLException) {
             Log.e(TAG, "MalformedURLException: " + e.message)
@@ -42,8 +41,8 @@ object HttpRequest {
         return response
     }
 
-    private fun convertStreamToString(`is`: java.io.InputStream): String {
-        val reader = BufferedReader(InputStreamReader(`is`))
+    private fun convertStreamToString(input: java.io.InputStream): String {
+        val reader = BufferedReader(InputStreamReader(input))
         val sb = StringBuilder()
         var line: String?
         while (true) {

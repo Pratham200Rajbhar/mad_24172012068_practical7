@@ -7,7 +7,5 @@ data class Person(
     var name: String = "",
     var emailId: String = "",
     var phoneNo: String = "",
-    var address: String = "",
-    var latitude: Double = 0.0,
-    var longitude: Double = 0.0
+    var address: String = ""
 ) : Serializable

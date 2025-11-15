@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
-import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,11 +36,6 @@ class MainActivity : AppCompatActivity() {
         loadFromDb()
 
         fabRefresh.setOnClickListener {
-            fetchAndSaveData()
-        }
-
-        // initial fetch (optional)
-        if (dbHelper.personsCount() == 0) {
             fetchAndSaveData()
         }
     }
@@ -88,25 +82,13 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 until arr.length()) {
                 val obj = arr.getJSONObject(i)
                 val person = Person()
-                // id (if provided), else generate
-                person.id = if (obj.has("id")) obj.getString("id") else UUID.randomUUID().toString()
+                person.id = obj.getString("id")
                 person.emailId = obj.optString("email", "")
                 person.phoneNo = obj.optString("phone", "")
                 if (obj.has("profile")) {
                     val prof = obj.getJSONObject("profile")
                     person.name = prof.optString("name", "")
                     person.address = prof.optString("address", "")
-                    if (prof.has("location")) {
-                        val loc = prof.getJSONObject("location")
-                        person.latitude = loc.optDouble("lat", 0.0)
-                        person.longitude = loc.optDouble("long", 0.0)
-                    }
-                } else {
-                    // fallback fields
-                    person.name = obj.optString("name", "")
-                    person.address = obj.optString("address", "")
-                    person.latitude = obj.optDouble("latitude", 0.0)
-                    person.longitude = obj.optDouble("longitude", 0.0)
                 }
                 db.insertPerson(person)
             }

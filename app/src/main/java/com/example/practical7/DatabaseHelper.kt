@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.practical7.Person
 import java.util.ArrayList
 
 class DatabaseHelper(context: Context?) :
@@ -33,29 +32,9 @@ class DatabaseHelper(context: Context?) :
         values.put(PersonDbTableData.KEY_EMAIL, person.emailId)
         values.put(PersonDbTableData.KEY_PHONE, person.phoneNo)
         values.put(PersonDbTableData.KEY_ADDRESS, person.address)
-        values.put(PersonDbTableData.KEY_LAT, person.latitude)
-        values.put(PersonDbTableData.KEY_LONG, person.longitude)
         val id = db.insertWithOnConflict(PersonDbTableData.TABLE_PERSONS, null, values, SQLiteDatabase.CONFLICT_REPLACE)
         db.close()
         return id
-    }
-
-    fun getPerson(id: String): Person? {
-        val db = readableDatabase
-        val cursor = db.query(
-            PersonDbTableData.TABLE_PERSONS, null,
-            "${PersonDbTableData.KEY_ID}=?",
-            arrayOf(id), null, null, null
-        )
-        var p: Person? = null
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                p = getPersonFromCursor(cursor)
-            }
-            cursor.close()
-        }
-        db.close()
-        return p
     }
 
     private fun getPersonFromCursor(cursor: Cursor): Person {
@@ -65,8 +44,6 @@ class DatabaseHelper(context: Context?) :
         person.emailId = cursor.getString(cursor.getColumnIndexOrThrow(PersonDbTableData.KEY_EMAIL))
         person.phoneNo = cursor.getString(cursor.getColumnIndexOrThrow(PersonDbTableData.KEY_PHONE))
         person.address = cursor.getString(cursor.getColumnIndexOrThrow(PersonDbTableData.KEY_ADDRESS))
-        person.latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(PersonDbTableData.KEY_LAT))
-        person.longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(PersonDbTableData.KEY_LONG))
         return person
     }
 
@@ -94,15 +71,5 @@ class DatabaseHelper(context: Context?) :
             arrayOf(person.id))
         db.close()
         return rows
-    }
-
-    fun personsCount(): Int {
-        val countQuery = "SELECT * FROM ${PersonDbTableData.TABLE_PERSONS}"
-        val db = readableDatabase
-        val cursor = db.rawQuery(countQuery, null)
-        val cnt = cursor.count
-        cursor.close()
-        db.close()
-        return cnt
     }
 }

@@ -1,75 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="8dp"
-    android:padding="16dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="12dp">
 
+        <!-- Avatar -->
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:scaleType="centerCrop"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
             android:src="@android:drawable/sym_def_app_icon"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="avatar" />
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
+        <!-- Name -->
         <TextView
             android:id="@+id/nameText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/avatar"
-            android:layout_marginStart="12dp"
-            android:textSize="20sp"
+            android:text="Name"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Name" />
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
+        <!-- Phone -->
         <TextView
             android:id="@+id/phoneText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/nameText"
-            android:layout_toEndOf="@id/avatar"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:text="phone" />
+            android:text="Phone"
+            app:layout_constraintStart_toStartOf="@id/nameText"
+            app:layout_constraintTop_toBottomOf="@id/nameText"
+            app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
+        <!-- Email -->
         <TextView
             android:id="@+id/emailText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/phoneText"
-            android:layout_toEndOf="@id/avatar"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="6dp"
-            android:text="email" />
+            android:text="Email"
+            app:layout_constraintStart_toStartOf="@id/nameText"
+            app:layout_constraintTop_toBottomOf="@id/phoneText"
+            app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
+        <!-- Address -->
         <TextView
             android:id="@+id/addressText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/emailText"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/avatar"
-            android:layout_marginStart="12dp"
-            android:text="Address" />
+            android:text="Address"
+            app:layout_constraintStart_toStartOf="@id/nameText"
+            app:layout_constraintTop_toBottomOf="@id/emailText"
+            app:layout_constraintEnd_toStartOf="@id/deleteBtn" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/deleteFab"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Delete" />
-    </RelativeLayout>
+        <!-- Delete Button (NO border radius, NO ripple circle) -->
+        <ImageButton
+            android:id="@+id/deleteBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="#fd006a"
+            android:src="@drawable/baseline_delete_24"
+            app:tint="@android:color/white"
+            android:contentDescription="Delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-</androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
